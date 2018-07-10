@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import TrackList from '../TrackList/TrackList';
+import SearchResult from '../SearchResult/SearchResult';
 
 class App extends Component {
   render() {
@@ -12,10 +13,7 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <div className="SearchResults">
-              <h2>Results</h2>
-              <TrackList />
-            </div>
+            <SearchResult />
             <div className="Playlist">
               <input value='New Playlist' />
               <TrackList />
