@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
 import SearchBar from '../SearchBar/SearchBar';
-import TrackList from '../TrackList/TrackList';
 import SearchResult from '../SearchResult/SearchResult';
+import PlayList from '../PlayList/PlayList';
 
 class App extends Component {
   render() {
@@ -14,11 +14,7 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResult />
-            <div className="Playlist">
-              <input value='New Playlist' />
-              <TrackList />
-              <a className="Playlist-save">SAVE TO SPOTIFY</a>
-            </div>
+            <PlayList />
           </div>
         </div>
     </div>
