@@ -6,11 +6,9 @@ class TrackList extends React.Component {
     render() {
         return (
             <div className="TrackList">
-                <TrackItem />
-                <TrackItem />
-                <TrackItem />
-                <TrackItem />
-                <TrackItem />
+                {this.props.trackList && this.props.trackList.map(trackItem => {
+                    return <TrackItem trackItem={trackItem} />
+                })}
             </div>
         );
     }

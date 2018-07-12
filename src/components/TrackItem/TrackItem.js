@@ -6,8 +6,8 @@ class TrackItem extends React.Component {
         return (
             <div className="Track">
                 <div className="Track-information">
-                    <h3>Tiny Dancer</h3>
-                    <p>Elton John | Madman Across The Water</p>
+                    <h3>{this.props.trackItem.title}</h3>
+                    <p>{this.props.trackItem.artist} | {this.props.trackItem.album}</p>
                 </div>
                 <a className="Track-action">+</a>
             </div>

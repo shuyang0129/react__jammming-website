@@ -5,11 +5,26 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResult from '../SearchResult/SearchResult';
 import PlayList from '../PlayList/PlayList';
 
+const searchResult = {
+  title: 'Tiny Dancer',
+  artist: 'Elton John',
+  album: 'Madman Across The Water'
+};
+
+const searchResultList = [
+searchResult,
+searchResult,
+searchResult,
+searchResult,
+searchResult,
+searchResult
+];
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResult: [],
+      searchResultList: [],
       playList: []
     };
 
@@ -18,6 +33,10 @@ class App extends Component {
 
   searchSpotify(searchKeyword) {
     console.log('From App component', searchKeyword);
+    this.setState({
+      searchResultList: searchResultList,
+      playList: searchResultList
+    });
   }
 
   render() {
@@ -27,8 +46,8 @@ class App extends Component {
         <div className="App">
           <SearchBar onClick={this.searchSpotify} />
           <div className="App-playlist">
-            <SearchResult />
-            <PlayList />
+            <SearchResult trackList={this.state.searchResultList} />
+            <PlayList trackList={this.state.playList} />
           </div>
         </div>
     </div>
