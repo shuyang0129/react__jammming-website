@@ -12,9 +12,11 @@ class App extends Component {
       searchResult: [],
       playList: []
     };
+
+    this.searchSpotify = this.searchSpotify.bind(this);
   }
 
-  handleClick(searchKeyword) {
+  searchSpotify(searchKeyword) {
     console.log('From App component', searchKeyword);
   }
 
@@ -23,7 +25,7 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar onClick={this.handleClick} />
+          <SearchBar onClick={this.searchSpotify} />
           <div className="App-playlist">
             <SearchResult />
             <PlayList />
