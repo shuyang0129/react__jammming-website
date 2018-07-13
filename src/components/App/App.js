@@ -29,13 +29,21 @@ class App extends Component {
     };
 
     this.searchSpotify = this.searchSpotify.bind(this);
+    this.addToList = this.addToList.bind(this);
   }
 
   searchSpotify(searchKeyword) {
     console.log('From App component', searchKeyword);
     this.setState({
-      searchResultList: searchResultList,
-      playList: searchResultList
+      searchResultList: searchResultList
+    });
+  }
+
+  addToList(selectedItem) {
+    const playListArray = this.state.playList;
+    playListArray.push(selectedItem);
+    this.setState({
+      playList: playListArray
     });
   }
 
@@ -46,7 +54,9 @@ class App extends Component {
         <div className="App">
           <SearchBar onClick={this.searchSpotify} />
           <div className="App-playlist">
-            <SearchResult trackList={this.state.searchResultList} />
+            <SearchResult 
+              trackList={this.state.searchResultList}
+              onClick={this.addToList} />
             <PlayList trackList={this.state.playList} />
           </div>
         </div>
