@@ -8,16 +8,23 @@ class PlayList extends React.Component {
         this.state = {};
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleClick(selectedItem) {
         this.props.onClick(selectedItem);
     }
+
+    handleChange(e) {
+        e.preventDefault();
+        this.props.onChange(e.target.value);
+    }
     
     render() {
         return (
             <div className="Playlist">
-                <input value='New Playlist' />
+                <input value={this.props.playListTitle}
+                    onChange={this.handleChange} />
                 <TrackList 
                     trackList={this.props.trackList}
                     onClick={this.handleClick} >-</TrackList>

@@ -61,13 +61,15 @@ class App extends Component {
     super(props);
     this.state = {
       searchResultList: [],
-      playList: []
+      playList: [],
+      playlistTitle: "New Playlist"
     };
 
     this.searchSpotify = this.searchSpotify.bind(this);
     this.addToList = this.addToList.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
     this.saveToSpotify = this.saveToSpotify.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   searchSpotify(searchKeyword) {
@@ -106,7 +108,19 @@ class App extends Component {
   }
 
   saveToSpotify() {
-    console.log('Clicked');
+    console.log('Save to Spotify');
+    console.log('Play list title: ', this.state.playlistTitle);
+    console.log('Play list: ', this.state.playList);
+    this.setState({
+      playList: [],
+      playlistTitle: "New PlayList"
+    });
+  }
+
+  handleChange(playlistTitle) {
+    this.setState({
+      playlistTitle: playlistTitle
+    });
   }
 
   render() {
@@ -120,9 +134,11 @@ class App extends Component {
               trackList={this.state.searchResultList}
               onClick={this.addToList} />
             <PlayList 
+              playListTitle={this.state.playlistTitle}
               trackList={this.state.playList}
               onClick={this.removeFromList}
-              onSave={this.saveToSpotify} />
+              onSave={this.saveToSpotify}
+              onChange={this.handleChange} />
           </div>
         </div>
     </div>
