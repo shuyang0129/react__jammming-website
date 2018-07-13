@@ -20,8 +20,10 @@ class PlayList extends React.Component {
                 <input value='New Playlist' />
                 <TrackList 
                     trackList={this.props.trackList}
-                    onClick={this.handleClick} />
-                <a className="Playlist-save">SAVE TO SPOTIFY</a>
+                    onClick={this.handleClick} >-</TrackList>
+                <a 
+                    className="Playlist-save"
+                    onClick={this.props.onSave}>SAVE TO SPOTIFY</a>
             </div>
         );
     }

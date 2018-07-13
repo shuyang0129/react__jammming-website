@@ -67,6 +67,7 @@ class App extends Component {
     this.searchSpotify = this.searchSpotify.bind(this);
     this.addToList = this.addToList.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
+    this.saveToSpotify = this.saveToSpotify.bind(this);
   }
 
   searchSpotify(searchKeyword) {
@@ -104,6 +105,10 @@ class App extends Component {
     });
   }
 
+  saveToSpotify() {
+    console.log('Clicked');
+  }
+
   render() {
     return (
       <div>
@@ -116,7 +121,8 @@ class App extends Component {
               onClick={this.addToList} />
             <PlayList 
               trackList={this.state.playList}
-              onClick={this.removeFromList} />
+              onClick={this.removeFromList}
+              onSave={this.saveToSpotify} />
           </div>
         </div>
     </div>

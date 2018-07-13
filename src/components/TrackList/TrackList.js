@@ -18,7 +18,7 @@ class TrackList extends React.Component {
         return (
             <div className="TrackList">
                 {this.props.trackList && this.props.trackList.map((trackItem, index) => {
-                    return <TrackItem index={index} trackItem={trackItem} onClick={this.handleClick} />
+                    return <TrackItem index={index} trackItem={trackItem} onClick={this.handleClick}>{this.props.children}</TrackItem>
                 })}
             </div>
         );

@@ -21,7 +21,7 @@ class TrackItem extends React.Component {
                     <h3>{this.props.trackItem.title}</h3>
                     <p>{this.props.trackItem.artist} | {this.props.trackItem.album}</p>
                 </div>
-                <a className="Track-action" onClick={this.handleClick}>+</a>
+                <a className="Track-action" onClick={this.handleClick}>{this.props.children}</a>
             </div>
         );
     }

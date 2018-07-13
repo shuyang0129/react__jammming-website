@@ -20,7 +20,7 @@ class SearchResult extends React.Component {
               <h2>Results</h2>
               <TrackList 
                 trackList={this.props.trackList}
-                onClick={this.handleClick} />
+                onClick={this.handleClick} >+</TrackList>
             </div>
         );
     }
