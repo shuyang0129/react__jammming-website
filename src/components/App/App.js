@@ -66,6 +66,7 @@ class App extends Component {
 
     this.searchSpotify = this.searchSpotify.bind(this);
     this.addToList = this.addToList.bind(this);
+    this.removeFromList = this.removeFromList.bind(this);
   }
 
   searchSpotify(searchKeyword) {
@@ -91,6 +92,18 @@ class App extends Component {
     }
   }
 
+  removeFromList(selectedItem) {
+    const playListArray = this.state.playList;
+    playListArray.forEach((item, index) => {
+      if(item.id === selectedItem.id) {
+        playListArray.splice(index, 1);
+        this.setState({
+          playList: playListArray
+        });
+      }
+    });
+  }
+
   render() {
     return (
       <div>
@@ -101,7 +114,9 @@ class App extends Component {
             <SearchResult 
               trackList={this.state.searchResultList}
               onClick={this.addToList} />
-            <PlayList trackList={this.state.playList} />
+            <PlayList 
+              trackList={this.state.playList}
+              onClick={this.removeFromList} />
           </div>
         </div>
     </div>
