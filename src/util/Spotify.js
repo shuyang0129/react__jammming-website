@@ -1,19 +1,3 @@
-let access_token = '';
-var client_id = '3ba5c157fd384a51913e7a1a8247c1d1'; // Your client id
-var redirect_uri = 'http://localhost:3000/'; // Your redirect uri
-
-
-// localStorage.setItem(stateKey, state);
-var scope = 'user-read-private user-read-email';
-
-let requestUrl = 'https://accounts.spotify.com/authorize';
-requestUrl += '?response_type=token';
-requestUrl += '&client_id=' + encodeURIComponent(client_id);
-requestUrl += '&scope=' + encodeURIComponent(scope);
-requestUrl += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-console.log(url);
-
-
 const Spotify = {
 
     getAccessToken() {
@@ -33,11 +17,13 @@ const Spotify = {
             }
             return access_token;
         }
+    },
+
+    search(term) {
+        fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+            headers: { Authorization: `Bearer ${this.accessToken}`}
+        });
     }
 };
 
-Spotify.getAccessToken();
-
-
-// export default Spotify;
-access_token=[]
+export default Spotify;
