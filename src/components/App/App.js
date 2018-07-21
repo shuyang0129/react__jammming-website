@@ -62,10 +62,15 @@ class App extends Component {
     });
   }
 
-  async saveToSpotify() {
-    Spotify.getAccessToken();
-    await Spotify.savePlaylist(this.state.playlistTitle);
-    await Spotify.addTracksToPlaylist();
+  saveToSpotify() {
+    const uris = this.state.playList.map(track => {
+      return track.uri;
+    });
+    Spotify.savePlaylist(this.state.playlistTitle, uris);
+    this.setState({
+      playList: [],
+      playlistTitle: "New Playlist"
+    });
   }
 
   handleChange(playlistTitle) {

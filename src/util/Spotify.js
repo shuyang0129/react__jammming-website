@@ -60,7 +60,7 @@ const Spotify = {
         }
     },
 
-    async savePlaylist(playlistTitle) {
+    async createPlaylist(playlistTitle) {
         try {
             const userId = await this.getUserId();
             const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
@@ -83,7 +83,7 @@ const Spotify = {
         }
     },
 
-    async addTracksToPlaylist() {
+    async addTracksToPlaylist(uris) {
         try {
             const userId = await this.getUserId();
             const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks` ,{
@@ -91,7 +91,7 @@ const Spotify = {
                 headers: { Authorization: `Bearer ${access_token}` },
                 "Content-Type": "application/json",
                 body: JSON.stringify({
-                    uris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
+                    uris: uris
                 })
             });
             if (response.ok) {
@@ -102,6 +102,12 @@ const Spotify = {
         } catch(error) {
             console.log(error);
         }
+    },
+
+    async savePlaylist(playlistTitle, uris) {
+        this.getAccessToken();
+        await this.createPlaylist(playlistTitle);
+        await this.addTracksToPlaylist(uris);
     }
 };
 
