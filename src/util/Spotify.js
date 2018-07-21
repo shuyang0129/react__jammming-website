@@ -1,4 +1,5 @@
 let access_token = '';
+let playlistId = '';
 const client_id = '3ba5c157fd384a51913e7a1a8247c1d1'; // Your client id
 const redirect_uri = 'http://localhost:3000/'; // Your redirect uri
 
@@ -22,40 +23,85 @@ const Spotify = {
         }
     },
 
-    search(term) {
-        this.getAccessToken();
-        
-        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-            headers: { Authorization: `Bearer ${access_token}`}
-        }).then(response => {
-            if(response.ok) {
-                return response.json();
+    async search(term) {       
+        try {
+            this.getAccessToken();
+            const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+                headers: { Authorization: `Bearer ${access_token}` }
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.tracks.items.map(track => ({
+                    id: track.id,
+                    title: track.name,
+                    artist: track.artists[0].name,
+                    album: track.album.name,
+                    uri: track.uri
+                }));
             }
-        }).then(jsonResponse => {
-            return jsonResponse.tracks.items.map(track => ({
-                id: track.id,
-                title: track.name,
-                artist: track.artists[0].name,
-                album: track.album.name,
-                uri: track.uri
-            }));
-        });
+            throw new Error('Request failed');
+        } catch(error) {
+            console.log(error);
+        }
+    },
 
-        // fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-        //     headers: { Authorization: `Bearer ${this.accessToken}`}
-        // }).then(response => {
-        //     if(response.ok) {
-        //         return response.json();
-        //     }
-        //     throw new Error('Request failed!');
-        // }, networkError => console.log(networkError.message))
-        //     .then(jsonResponse => {
-        //         if(jsonResponse === undefined || jsonResponse.length == 0) {
-        //             return [];
-        //         } else {
-        //             console.log(jsonResponse);
-        //         }
-        //     });
+    async getUserId() {
+        try {
+            const response = await fetch(`https://api.spotify.com/v1/me`, {
+                headers: { Authorization: `Bearer ${access_token}` }
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.id;
+            }
+            throw new Error('Request failed');
+        } catch(error) {
+            console.log(error);
+        }
+    },
+
+    async savePlaylist(playlistTitle) {
+        try {
+            const userId = await this.getUserId();
+            const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${access_token}` },
+                "Content-Type": "application/json",
+                body: JSON.stringify({
+                    name: playlistTitle
+                }),
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                playlistId = await jsonResponse.id;
+                // this.addTracksToPlaylist();
+                return playlistId;
+            }
+            throw new Error('Request failed');
+        } catch(error) {
+            console.log(error);
+        }
+    },
+
+    async addTracksToPlaylist() {
+        try {
+            const userId = await this.getUserId();
+            const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks` ,{
+                method: 'POST',
+                headers: { Authorization: `Bearer ${access_token}` },
+                "Content-Type": "application/json",
+                body: JSON.stringify({
+                    uris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
+                })
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse;
+            }
+            throw new Error('Request failed');
+        } catch(error) {
+            console.log(error);
+        }
     }
 };
 

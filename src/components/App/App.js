@@ -62,14 +62,10 @@ class App extends Component {
     });
   }
 
-  saveToSpotify() {
-    console.log('Save to Spotify');
-    console.log('Play list title: ', this.state.playlistTitle);
-    console.log('Play list: ', this.state.playList);
-    this.setState({
-      playList: [],
-      playlistTitle: "New PlayList"
-    });
+  async saveToSpotify() {
+    Spotify.getAccessToken();
+    await Spotify.savePlaylist(this.state.playlistTitle);
+    await Spotify.addTracksToPlaylist();
   }
 
   handleChange(playlistTitle) {
