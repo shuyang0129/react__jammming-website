@@ -12,10 +12,20 @@ class SearchBar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    // handleSearch(e) {
+    //     e.preventDefault();
+    //     this.setState({
+    //         searchKeyword: e.target.value
+    //     });
+    // }
+
     handleSearch(e) {
         e.preventDefault();
+        const searchTerm = e.target.value;
+        localStorage.setItem('searchTerm', searchTerm);
+        console.log(localStorage.getItem('searchTerm'))
         this.setState({
-            searchKeyword: e.target.value
+            searchKeyword: localStorage.getItem('searchTerm')
         });
     }
 

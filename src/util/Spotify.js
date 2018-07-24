@@ -1,7 +1,7 @@
 let access_token = '';
 let playlistId = '';
 const client_id = '3ba5c157fd384a51913e7a1a8247c1d1'; // Your client id
-const redirect_uri = 'https://jammming-by-shuyang.surge.sh'; // Your redirect uri ex http://localhost:3000/
+const redirect_uri = 'http://localhost:3000'; // Your redirect uri ex http://localhost:3000/ https://jammming-by-shuyang.surge.sh
 
 const Spotify = {
     async getAccessToken() {       
@@ -29,7 +29,7 @@ const Spotify = {
 
     async search(term) {       
         try {
-            this.getAccessToken();
+            await this.getAccessToken();
             const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
                 headers: { Authorization: `Bearer ${access_token}` }
             });
