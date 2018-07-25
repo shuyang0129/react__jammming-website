@@ -28,7 +28,7 @@ Below is a list of the website's features:
 5. Repeat step 1 - 4 until you satisfy your playlist
 6. Name a title for the playlist
 7. Click the button "Save to Spotify"
-8. You will see in your Spotify accoucnt, there is a new playlist added
+8. You will see in your Spotify account, there is a new playlist added
 
 ### Where to use Jammming
 
