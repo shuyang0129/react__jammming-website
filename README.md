@@ -18,3 +18,23 @@ Below is a list of the website's features:
 
 ### Screenshot
 ![alt tag](https://github.com/shuyang0129/react__jammming-website/blob/master/jammming.png?raw=true "Jamming Project")
+
+
+### How to use
+1. Input A song title
+2. Click search button
+3. Authorizing spotify access token (Do not need the step if you already authorized)
+4. Add songs you like from search result to playlist
+5. Repeat step 1 - 4 until you satisfy your playlist
+6. Name a title for the playlist
+7. Click the button "Save to Spotify"
+8. You will see in your Spotify accoucnt, there is a new playlist added
+
+### Where to use Jammming
+
+The project is deployed by using Surge. It is available from:
+http://jammming-by-shuyang.surge.sh/
+
+
+
+
