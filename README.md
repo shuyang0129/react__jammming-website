@@ -17,4 +17,4 @@ Below is a list of the website's features:
 - Save Playlist to Account — users can save their custom playlist by clicking a button called SAVE TO SPOTIFY.
 
 ### Screenshot
-![alt tag](https://drive.google.com/file/d/1A2vN4vK2W-Lhn9mUWlEBVAuGbvUSq16I/view?usp=sharing "Jamming Project")
+![alt tag](https://github.com/shuyang0129/react__jammming-website/blob/master/jammming.png?raw=true "Jamming Project")
