@@ -22,10 +22,10 @@ class SearchBar extends React.Component {
     handleSearch(e) {
         e.preventDefault();
         const searchTerm = e.target.value;
-        localStorage.setItem('searchTerm', searchTerm);
-        console.log(localStorage.getItem('searchTerm'))
+        localStorage.setItem('searchTerm', JSON.stringify(searchTerm));
+        let keyword = JSON.parse(localStorage.getItem('searchTerm'));
         this.setState({
-            searchKeyword: localStorage.getItem('searchTerm')
+            searchKeyword: keyword
         });
     }
 
