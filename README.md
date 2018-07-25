@@ -15,3 +15,6 @@ Below is a list of the website's features:
 - Remove Song from Custom Playlist — users can remove a track from their playlist by selecting a - sign on the right side of the track's display container.
 - Change Playlist Title — users can change the title of their custom playlist.
 - Save Playlist to Account — users can save their custom playlist by clicking a button called SAVE TO SPOTIFY.
+
+### Screenshot
+![alt tag](https://drive.google.com/file/d/1A2vN4vK2W-Lhn9mUWlEBVAuGbvUSq16I/view?usp=sharing "Jamming Project")
